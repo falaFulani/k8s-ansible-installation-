@@ -1,0 +1,8 @@
+---
+- name: Install k8s on Ubuntu
+  hosts: k8s 
+  gather_facts: true
+  roles: 
+  - swap
+  - docker
+  - repo-k8s

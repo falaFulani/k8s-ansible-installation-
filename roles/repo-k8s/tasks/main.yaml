@@ -1,0 +1,26 @@
+---
+- name: Add Google Offical GPG Key 
+  apt_key: 
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present 
+
+- name: Add K8s Repository 
+  apt_repository: 
+    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+    state: present 
+    filename: kubernetes
+    mode: 600
+
+- name: Installing K8s packages
+  apt: name={{ item }} state=present 
+  with_items:
+   - kubeadm 
+   - kubectl 
+   - kubelet 
+  
+
+- name: Enable service kubelet 
+  service: 
+    name: kubelet 
+    state: started 
+    enabled: yes 

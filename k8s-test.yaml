@@ -1,0 +1,6 @@
+--- 
+- name: tesk K8s installation 
+  hosts: target1
+  roles: 
+   - packages
+   - addreop
